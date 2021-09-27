@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/42dc12de3f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/5/sandstone/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>To Do App</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class= "text-center display-4">
+            <i class="fas fa-book-open text-primary"></i> To<span class="text-primary">Do</span>List
+        </h1>
+        <form id="list-form">
+            <div class="mt-4">
+                <label for="task">Add Task</label>
+                <input type="text" id="task" class="form-control" placeholder="your task" >
+            </div>
+            <input type="button" value="Add Task" class="btn btn-primary btn-block mt-2 add"></input>
+        </form>
+
+        <ul id="task-list" class="mt-4"></ul>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
