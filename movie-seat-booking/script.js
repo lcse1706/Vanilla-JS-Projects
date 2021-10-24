@@ -12,6 +12,13 @@ function restoreData(){
     const restoredSeats = JSON.parse(localStorage.getItem('selectedSeatsIndex'));
     const restoredMovie = localStorage.getItem('pickedMovie');
 
+    //populate movie, numebr of seats, price
+    [...moviePick.options].forEach((option) => {    
+        if (option.value === restoredMovie){      
+            moviePick.options.selectedIndex = option.index;
+            moviePrice = moviePick.value;
+        }  
+    })
     //populate seats
     seats.forEach( (seat, index) => {
         if (restoredSeats.includes(index)){
@@ -26,8 +33,6 @@ function storageData(selectedSeats){
         [...seats].indexOf(seat));
 
     localStorage.setItem('selectedSeatsIndex', JSON.stringify(selectedSeatsIndex));
-    // localStorage.setItem('countSeats', count.innerText);        
-    // localStorage.setItem('price', total.innerText);
     localStorage.setItem('pickedMovie', moviePick.value)
 }
 
@@ -37,7 +42,9 @@ function updateData() {
 
     moviePick.addEventListener('change', () => {
         moviePrice = moviePick.value; 
-        updatePrice();
+        storageData(selectedSeats);
+        updateData();
+        
     })
 
     count.innerText = selectedSeats.length;
@@ -59,6 +66,7 @@ function markSeats(e) {
 seatsContainer.addEventListener('click', (e) => markSeats(e))
 
 restoreData();
+updateData();
 
 // document.addEventListener('click', (e) => {
 //     console.log(e.target);
