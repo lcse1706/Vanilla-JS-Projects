@@ -39,21 +39,16 @@ function storageData(selectedSeats){
 function updateData() {
     
     const selectedSeats = seatsContainer.querySelectorAll('.selected');
-
     moviePick.addEventListener('change', () => {
         moviePrice = moviePick.value; 
         storageData(selectedSeats);
         updateData();
         
     })
-
     count.innerText = selectedSeats.length;
     total.innerText = selectedSeats.length * moviePrice;
-    
-    storageData(selectedSeats);
-            
+    storageData(selectedSeats);          
 }
-
 
 function markSeats(e) {
     if(e.target.matches('.seat') && !e.target.matches('.occupied')){
@@ -62,12 +57,6 @@ function markSeats(e) {
     updateData();
 }
 
-
 seatsContainer.addEventListener('click', (e) => markSeats(e))
-
 restoreData();
 updateData();
-
-// document.addEventListener('click', (e) => {
-//     console.log(e.target);
-// })
