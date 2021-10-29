@@ -14,6 +14,11 @@
 
 body {
   font-family: Lato, sans-serif;
+  transition: 0.2s;
+}
+
+body.showNav {
+  transform: translateX(200px);
 }
 
 nav {
@@ -133,11 +138,10 @@ button:focus {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  transform: translateY(-100%);
-}
 
-.modal-container.open {
-  transform: translateY(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
 }
 
 .modal {
@@ -146,6 +150,11 @@ button:focus {
   width: 400px;
   height: 500px;
   border-radius: 5px;
+}
+
+.modal-container.open {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .close-btn {
