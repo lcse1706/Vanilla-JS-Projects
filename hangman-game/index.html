@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hangman</title>
+</head>
+<body>
+
+    <h1>Hangman</h1>
+    <p>Type your letter:</p>
+        <div class="game-container">
+        <svg width=150px height=250px class="svg-container">
+            <!-- Rod -->
+            <line x1='40' y1='20' x2='100' y2='20' />
+            <line x1='100' y1='20' x2='100' y2='50' />
+            <line x1='40' y1='20' x2='40' y2='200' />
+            <line x1='20' y1='200' x2='60' y2='200' />
+            <!-- Man -->
+            <circle cx='100' cy='70' r='20' class='man-part'/>
+            <line x1='100' y1='90' x2='100' y2='150' class='man-part' />
+            <line x1='100' y1='100' x2='120' y2='110' class='man-part' />
+            <line x1='100' y1='100' x2='80' y2='110'  class='man-part'/>
+            <line x1='100' y1='150' x2='80' y2='170' class='man-part'/>
+            <line x1='100' y1='150' x2='120' y2='170' class='man-part'/>
+        </svg>
+    </div>    
+    <script src="script.js"></script>
+</body>
+</html>
