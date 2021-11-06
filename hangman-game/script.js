@@ -4,15 +4,40 @@ const playAgainBtn = document.getElementById('play-button');
 const popup = document.getElementById('popup-container');
 const notification = document.getElementById('notification-container');
 const finalMessage = document.getElementById('final-message');
+const loadingDiv = document.getElementById('loading');
 
 const figureParts = document.querySelectorAll('.man-part');
 
-const words = ['programming', 'frontend'];
+// const words = ['programming', 'frontend'];
 
 const correctLetters = [];
 const wrongLetters = [];
 
-let selectedWord = words[Math.floor(Math.random() * words.length)];
+// let selectedWord = words[Math.floor(Math.random() * words.length)];
+let selectedWord = '';
+// function generateWord() {
+//   fetch(`https://random-word-api.herokuapp.com/all`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       selectedWord = data[Math.floor(Math.random() * data.length)];
+//       console.log(selectedWord);
+//     });
+// }
+
+async function renderWord() {
+  const response = await fetch(`https://random-word-api.herokuapp.com/all`);
+  const data = await response.json();
+  const getWord = data[Math.floor(Math.random() * data.length)];
+  selectedWord = getWord;
+}
+
+async function newGame() {
+  loadingDiv.style.display = 'block';
+  await renderWord();
+  loadingDiv.style.display = 'none';
+  console.log(selectedWord);
+  displayWord();
+}
 
 function displayWord() {
   word.innerHTML = ` ${selectedWord
@@ -93,13 +118,15 @@ playAgainBtn.addEventListener('click', () => {
   correctLetters.splice(0);
   wrongLetters.splice(0);
 
-  selectedWord = words[Math.floor(Math.random() * words.length)];
+  // selectedWord = words[Math.floor(Math.random() * words.length)];
+  // generateWord();
+  // displayWord();
 
-  displayWord();
+  newGame();
 
   updateWrongLettersEl();
 
   popup.style.display = 'none';
 });
 
-displayWord();
+newGame();
