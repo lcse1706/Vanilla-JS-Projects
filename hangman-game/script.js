@@ -8,21 +8,10 @@ const loadingDiv = document.getElementById('loading');
 
 const figureParts = document.querySelectorAll('.man-part');
 
-// const words = ['programming', 'frontend'];
-
 const correctLetters = [];
 const wrongLetters = [];
 
-// let selectedWord = words[Math.floor(Math.random() * words.length)];
 let selectedWord = '';
-// function generateWord() {
-//   fetch(`https://random-word-api.herokuapp.com/all`)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       selectedWord = data[Math.floor(Math.random() * data.length)];
-//       console.log(selectedWord);
-//     });
-// }
 
 async function renderWord() {
   const response = await fetch(`https://random-word-api.herokuapp.com/all`);
@@ -117,10 +106,6 @@ window.addEventListener('keydown', (e) => {
 playAgainBtn.addEventListener('click', () => {
   correctLetters.splice(0);
   wrongLetters.splice(0);
-
-  // selectedWord = words[Math.floor(Math.random() * words.length)];
-  // generateWord();
-  // displayWord();
 
   newGame();
 
