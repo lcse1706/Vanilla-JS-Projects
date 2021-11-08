@@ -89,6 +89,10 @@ input[type='text'] {
   transition: opacity 0.4s ease;
 }
 
+.meal-info h3 {
+  pointer-events: none;
+}
+
 .meal-info:hover {
   opacity: 1;
 }
