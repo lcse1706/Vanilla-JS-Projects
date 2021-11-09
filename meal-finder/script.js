@@ -3,6 +3,7 @@ const resultHeading = document.getElementById('result-heading');
 const meals = document.getElementById('meals');
 const submit = document.getElementById('submit');
 const single_mealEl = document.getElementById('single-meal');
+const random = document.getElementById('random');
 
 function searchMeal(e) {
   e.preventDefault();
@@ -57,6 +58,15 @@ function getMealByID(mealId) {
     });
 }
 
+function showRandomRecipie() {
+  console.log('click');
+  fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+    .then((res) => res.json())
+    .then((data) => {
+      addMealtoDOM(data);
+    });
+}
+
 function addMealtoDOM(item) {
   const ingredients = [];
   const mealEl = item.meals[0];
@@ -92,3 +102,5 @@ function addMealtoDOM(item) {
 submit.addEventListener('submit', searchMeal);
 
 meals.addEventListener('click', showRecipie);
+
+random.addEventListener('click', showRandomRecipie);
