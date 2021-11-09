@@ -1,7 +1,7 @@
 const loader = document.querySelector('.loader');
 const postsContainer = document.getElementById('posts-container');
 
-let limit = 3;
+let limit = 4;
 let page = 1;
 
 async function getPosts() {
@@ -11,6 +11,18 @@ async function getPosts() {
   const data = await res.json();
 
   return data;
+}
+
+function showLoading() {
+  loader.classList.add('show');
+
+  setTimeout(() => {
+    loader.classList.remove('show');
+    setTimeout(() => {
+      page++;
+      addPostsToDOM();
+    }, 300);
+  }, 1000);
 }
 
 async function addPostsToDOM() {
@@ -31,3 +43,11 @@ async function addPostsToDOM() {
 }
 
 addPostsToDOM();
+
+window.addEventListener('scroll', () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    showLoading();
+  }
+});
