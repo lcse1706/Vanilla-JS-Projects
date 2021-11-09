@@ -157,11 +157,6 @@ input[type='text'] {
   input[type='text'] {
     width: 100%;
   }
-
-  .meals {
-    grid-template-columns: 1fr;
-  }
-
   .meal {
     height: 300px;
     width: 300px;
