@@ -18,6 +18,7 @@ const richestPeople = [
 const listItems = [];
 
 let dragStartIndex;
+let dragEndIndex;
 
 createList();
 
@@ -32,12 +33,54 @@ function createList() {
       listItem.setAttribute('data-index', index);
       listItem.innerHTML = `
         <span class="number">${index + 1}</span>
-        <div class = "draggable" draggable = "true">
-            <p class = "person-name"> ${person}</p>
-            <i calss = "fas fa-grip-lines"></i>
+        <div class="draggable" draggable = "true">
+            <p class="person-name"> ${person}</p>
+            <i class="fas fa-grip-lines"></i>
         </div>
         `;
       listItems.push(listItem);
       draggable_list.appendChild(listItem);
     });
+
+  addEventListeners();
+}
+
+function dragStart() {
+  dragStartIndex = +this.closest('li').getAttribute('data-index');
+}
+function dragOver(e) {
+  e.preventDefault();
+}
+function dragEnter() {
+  this.classList.add('over');
+}
+function dragLeave() {
+  this.classList.remove('over');
+}
+function dragDrop() {
+  console.log('drop');
+  dragEndIndex = +this.closest('li').getAttribute('data-index');
+  swapItems(dragStartIndex, dragEndIndex);
+
+  this.classList.remove('over');
+}
+
+function swapItems(firstIndex, secondIndex) {
+  const itemOne = listItems[firstIndex].querySelector('.draggable');
+  const itemTwo = listItems[secondIndex].querySelector('.draggable');
+
+  listItems[firstIndex].appendChild(itemTwo);
+  listItems[secondIndex].appendChild(itemOne);
+}
+
+function addEventListeners() {
+  const items = document.querySelectorAll('.draggable-list li');
+
+  items.forEach((item) => {
+    item.addEventListener('dragstart', dragStart);
+    item.addEventListener('dragover', dragOver);
+    item.addEventListener('drop', dragDrop);
+    item.addEventListener('dragenter', dragEnter);
+    item.addEventListener('dragleave', dragLeave);
+  });
 }
