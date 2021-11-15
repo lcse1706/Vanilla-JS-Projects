@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+:root {
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --border-color: rgb(146, 146, 146);
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+}
+
+.container {
+  width: 350px;
+}
+
+h4 {
+  text-transform: uppercase;
+}
+
+h1,
+h4 {
+  margin: 0;
+}
+
+h2 {
+  margin-bottom: 40px;
+}
+
+.inc-exp-container {
+  display: flex;
+  padding: 10px;
+  box-shadow: var(--box-shadow);
+  background-color: #fff;
+  margin: 20px 0;
+}
+
+.inc-exp-container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 10px 20px;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.inc-exp-container div:first-of-type {
+  border-right: 1px solid var(--border-color);
+}
+
+.money {
+  margin: 0;
+}
+
+p.plus {
+  color: #2ecc71;
+}
+
+p.minus {
+  color: #c0392b;
+}
+
+h3 {
+  border-bottom: 1px solid var(--border-color);
+  line-height: 40px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list li.plus {
+  border-right: 5px solid #2ecc71;
+}
+
+.list li.minus {
+  border-right: 5px solid #c0392b;
+}
+li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: var(--box-shadow);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%);
+  border: none;
+  background-color: red;
+  color: white;
+  opacity: 0;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.list li:hover .delete-btn {
+  opacity: 1;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+}
+
+.form-control input {
+  margin: 15px 0;
+  padding: 10px;
+  border: 1px solid #dedede;
+}
+
+.btn {
+  background-color: #9c88ff;
+  color: #fff;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+}
