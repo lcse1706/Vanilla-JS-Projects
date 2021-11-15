@@ -84,13 +84,6 @@ function checkOrder() {
       listItem.classList.remove('right');
       listItem.classList.add('wrong');
     }
-
-    // if (personName !== richestPeople[index]) {
-    //   listItem.classList.add('wrong');
-    // } else {
-    //   listItem.classList.remove('wrong');
-    //   listItem.classList.add('right');
-    // }
   });
 }
 
