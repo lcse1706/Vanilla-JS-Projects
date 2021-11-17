@@ -1,4 +1,7 @@
 const list = document.getElementById('list');
+const income = document.getElementById('money-plus');
+const expense = document.getElementById('money-minus');
+const balance = document.getElementById('balance');
 
 const dummyTransactions = [
   { id: 1, text: 'Flower', amount: -20 },
@@ -8,6 +11,27 @@ const dummyTransactions = [
 ];
 
 const transactions = dummyTransactions;
+
+function uppdateValues() {
+  const amounts = transactions.map((trans) => trans.amount);
+
+  const total = amounts.reduce((acc, item) => (acc += item), 0);
+
+  const inc = amounts
+    .filter((num) => num > 0)
+    .reduce((acc, item) => (acc += item), 0)
+    .toFixed(2);
+
+  const exp =
+    amounts
+      .filter((num) => num < 0)
+      .reduce((acc, item) => (acc += item), 0)
+      .toFixed(2) * -1;
+
+  balance.innerHTML = `$${total}`;
+  income.innerHTML = `+$${inc}`;
+  expense.innerHTML = `-$${exp}`;
+}
 
 function addTransactionToDOM(transaction) {
   const sign = transaction.amount > 0 ? '+' : '-';
@@ -29,6 +53,7 @@ function addTransactionToDOM(transaction) {
 function startApp() {
   list.innerHTML = ``;
   transactions.forEach(addTransactionToDOM);
+  uppdateValues();
 }
 
 startApp();
