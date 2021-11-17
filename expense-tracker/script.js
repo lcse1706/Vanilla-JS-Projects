@@ -13,7 +13,7 @@ const dummyTransactions = [
   { id: 4, text: 'Camera', amount: 150 },
 ];
 
-const transactions = dummyTransactions;
+let transactions = dummyTransactions;
 
 function uppdateValues() {
   const amounts = transactions.map((trans) => trans.amount);
@@ -36,9 +36,18 @@ function uppdateValues() {
   expense.innerHTML = `-$${exp}`;
 }
 
+function deleteTransaction(id) {
+  transactions = transactions.filter((item) => item.id !== id);
+  startApp();
+}
+
 function addTransaction(e) {
   e.preventDefault();
-  const transaction = { id: createId, text: text.value, amount: +amount.value };
+  const transaction = {
+    id: createId(),
+    text: text.value,
+    amount: +amount.value,
+  };
   console.log(transaction);
   transactions.push(transaction);
 
@@ -50,7 +59,7 @@ function addTransaction(e) {
 }
 
 function createId() {
-  return Math.floor(Math.random * 1000000);
+  return Math.floor(Math.random() * 1000000);
 }
 
 function addTransactionToDOM(transaction) {
@@ -63,7 +72,9 @@ function addTransactionToDOM(transaction) {
   item.innerHTML = `
     ${transaction.text} <span>${sign}$${Math.abs(
     transaction.amount
-  )}</span><button class="delete-btn">x</button>
+  )}</span><button class="delete-btn" onclick= "deleteTransaction(${
+    transaction.id
+  })"  >x</button>
 
     `;
 
