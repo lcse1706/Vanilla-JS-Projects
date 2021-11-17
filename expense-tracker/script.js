@@ -6,14 +6,19 @@ const form = document.getElementById('form');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
 
-const dummyTransactions = [
-  { id: 1, text: 'Flower', amount: -20 },
-  { id: 2, text: 'Salary', amount: 300 },
-  { id: 3, text: 'Book', amount: -10 },
-  { id: 4, text: 'Camera', amount: 150 },
-];
+let transactions = [];
 
-let transactions = dummyTransactions;
+function saveToLocalStorage() {
+  localStorage.setItem('list', JSON.stringify(transactions));
+}
+
+function restoreFromLocalStorage() {
+  const restoredData = JSON.parse(localStorage.getItem('list'));
+
+  if (restoredData) {
+    transactions = restoredData;
+  }
+}
 
 function uppdateValues() {
   const amounts = transactions.map((trans) => trans.amount);
@@ -43,19 +48,25 @@ function deleteTransaction(id) {
 
 function addTransaction(e) {
   e.preventDefault();
-  const transaction = {
-    id: createId(),
-    text: text.value,
-    amount: +amount.value,
-  };
-  console.log(transaction);
-  transactions.push(transaction);
 
-  addTransactionToDOM(transaction);
-  uppdateValues();
+  if (text.value === '' || amount.value === '') {
+    alert('Type text and amount');
+  } else {
+    const transaction = {
+      id: createId(),
+      text: text.value,
+      amount: +amount.value,
+    };
+    console.log(transaction);
+    transactions.push(transaction);
 
-  text.value = '';
-  amount.value = '';
+    addTransactionToDOM(transaction);
+    uppdateValues();
+    saveToLocalStorage();
+
+    text.value = '';
+    amount.value = '';
+  }
 }
 
 function createId() {
@@ -85,8 +96,10 @@ function startApp() {
   list.innerHTML = ``;
   transactions.forEach(addTransactionToDOM);
   uppdateValues();
+  saveToLocalStorage();
 }
 
+restoreFromLocalStorage();
 startApp();
 
 form.addEventListener('submit', addTransaction);
