@@ -6,6 +6,7 @@ const prevBtn = document.querySelector('.action-button.prev');
 const playBtn = document.querySelector('.action-button.play');
 const nextBtn = document.querySelector('.action-button.next');
 const progress = document.querySelector('.progress');
+const progressContainer = document.querySelector('.progress-container');
 
 const songs = ['hey', 'summer', 'ukulele'];
 
@@ -51,7 +52,17 @@ function updateProgress(e) {
   progress.style.width = `${progressBar}%`;
 }
 
+function handleProgress(e) {
+  const width = this.clientWidth;
+  const clickX = e.offsetX;
+  const duration = audio.duration;
+
+  audio.currentTime = (clickX / width) * duration;
+}
+
 prevBtn.addEventListener('click', handlePrevBtn);
 playBtn.addEventListener('click', handlePlayBtn);
 nextBtn.addEventListener('click', handleNextBtn);
 audio.addEventListener('timeupdate', updateProgress);
+progressContainer.addEventListener('click', handleProgress);
+audio.addEventListener('ended', handleNextBtn);
