@@ -9,15 +9,14 @@ const amount = document.getElementById('amount');
 let transactions = [];
 
 function saveToLocalStorage() {
-  localStorage.setItem('list', JSON.stringify(transactions));
+  localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 function restoreFromLocalStorage() {
-  const restoredData = JSON.parse(localStorage.getItem('list'));
+  const restoredData = JSON.parse(localStorage.getItem('transactions'));
+  console.log(restoredData);
 
-  if (restoredData) {
-    transactions = restoredData;
-  }
+  restoredData !== null && (transactions = restoredData);
 }
 
 function uppdateValues() {
