@@ -5,33 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Typing Game</title>
+    <script src="https://kit.fontawesome.com/42dc12de3f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="form-difficulty">
+    <div class="menu">
         <label for="difficulty">Difficulty</label>
         <select name="difficulty" id="difficulty">
             <option value="easy">easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
         </select>
+        <button class='hide-btn'>
+            <i class="fas fa-angle-up"></i>
+        </button>
     </div>
 
-    <div class="form-control">
+
+    <div class="game-container">
         <h1>Speed Typer</h1>
-        <p>Time left: </p><span class="time">10s</span>
-        <p>Score: </p><span class="score">0</span>
-        <p>Type the following: </p><span class="word">Word</span>
+        <p class="time-container">Time left: <span class="time">10s</span></p>
+        <p class="score-container">Score: <span class="score">0</span></p>
+        <p class="type-container">Type the following: </p> <span class="word">Word</span> 
         <input type="text" placeholder="Type the word here...">
     </div>
 
-    <div class="form-control">
+    <div class="endgame-container">
         <h1>Time ran out</h1>
-        <p>Your final score is </p><span class="total">0</span>
+        <p>Your final score is <span class="total">0</span></p>
+        <button class="reload"> Reload </button>
     </div>
-    <button class="reload"> Reload </button>
 
 
 
-    <button class='menu'>Hide Difficulty Menu</button>
+    
 </body>
 </html>

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #2c3e50;
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu {
+  background-color: #1f2b38;
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  top: 0;
+  left: 0;
+  text-align: center;
+  line-height: 100px;
+  font-size: 24px;
+}
+
+select:focus,
+button:focus {
+  outline: 0;
+}
+
+#difficulty {
+  margin-left: 5px;
+  font-size: 20px;
+  border-radius: 4px;
+}
+
+.hide-btn {
+  position: absolute;
+  bottom: -20px;
+  left: 40px;
+  font-size: 20px;
+  background-color: #fefefe;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+}
+
+.game-container {
+  width: 500px;
+  background-color: #34495e;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+h1 {
+  background-color: #2c3e50;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.time-container {
+  width: 50%;
+  text-align: left;
+}
+
+.score-container {
+  width: 50%;
+  text-align: right;
+}
+
+.type-container {
+  width: 100%;
+}
+
+.word {
+  width: 100%;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.game-container input {
+  width: 80%;
+  font-size: 20px;
+}
+
+.endgame-container {
+  width: 500px;
+  background-color: #34495e;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+.reload {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  background-color: #fff;
+  font-size: 16px;
+  margin-top: 20px;
+}
