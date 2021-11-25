@@ -28,6 +28,15 @@ body {
   text-align: center;
   line-height: 100px;
   font-size: 24px;
+  transition: 0.3s ease;
+}
+
+.menu.hide {
+  transform: translateY(-90%);
+}
+
+.menu.hide .hide-btn {
+  transform: rotate(180deg);
 }
 
 select:focus,
@@ -51,6 +60,7 @@ button:focus {
   height: 30px;
   border-radius: 50%;
   border: none;
+  /* transition: 0.3s linear; */
 }
 
 .game-container {

@@ -6,6 +6,9 @@ const scoreDisplay = document.querySelector('.score');
 const input = document.querySelector('.typeWord');
 const total = document.querySelector('.total');
 const difficulty = document.getElementById('difficulty');
+const reload = document.querySelector('.reload');
+const hide = document.querySelector('.hide-btn');
+const menu = document.querySelector('.menu');
 const words = [
   'sigh',
   'tense',
@@ -62,7 +65,7 @@ function setTime() {
 }
 
 function countingScore() {
-  score += 10;
+  score += 1;
   scoreDisplay.innerText = score;
 }
 
@@ -79,6 +82,19 @@ function checkWord() {
   }
 }
 
+function realod() {
+  //   window.location.reload();
+  startTime = 10;
+  score = 0;
+  currentWord = '';
+  time.innerText = `${startTime}s`;
+  scoreDisplay.innerText = score;
+  gameContainer.style.display = 'flex';
+  endgameContainer.style.display = 'none';
+  showWord();
+  setTime();
+}
+
 showWord();
 setTime();
 
@@ -91,6 +107,8 @@ difficulty.addEventListener('change', () => {
   } else {
     difficultyTime = 5;
   }
-
-  console.log(difficulty.value);
+});
+reload.addEventListener('click', realod);
+hide.addEventListener('click', () => {
+  menu.classList.toggle('hide');
 });
