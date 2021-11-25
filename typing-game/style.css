@@ -103,6 +103,8 @@ h1 {
 .game-container input {
   width: 80%;
   font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
 
 .endgame-container {
