@@ -4,6 +4,8 @@ const gameContainer = document.querySelector('.game-container');
 const endgameContainer = document.querySelector('.endgame-container');
 const scoreDisplay = document.querySelector('.score');
 const input = document.querySelector('.typeWord');
+const total = document.querySelector('.total');
+const difficulty = document.getElementById('difficulty');
 const words = [
   'sigh',
   'tense',
@@ -30,9 +32,11 @@ const words = [
 let startTime = 10;
 let score = 0;
 let currentWord = '';
+let difficultyTime = 5;
+let timer;
 
 function drawIndex() {
-  return Math.floor(Math.random() * words.length - 1);
+  return Math.floor(Math.random() * words.length);
 }
 
 function showWord() {
@@ -40,28 +44,53 @@ function showWord() {
   word.innerText = currentWord;
 }
 
+function endgame() {
+  total.innerText = score;
+  gameContainer.style.display = 'none';
+  endgameContainer.style.display = 'flex';
+  clearInterval(timer);
+}
+
 function setTime() {
-  const timer = setInterval(() => {
+  timer = setInterval(() => {
     startTime -= 1;
     time.innerText = `${startTime}s`;
     if (startTime < 0) {
-      gameContainer.style.display = 'none';
-      endgameContainer.style.display = 'flex';
-      clearInterval(timer);
+      endgame(timer);
     }
   }, 1000);
 }
 
-function checkWord(e) {
-  const buffor = e.value;
-  //   if (e.value === currentWord) {
-  //     console.log('ok');
-  //   }
+function countingScore() {
+  score += 10;
+  scoreDisplay.innerText = score;
+}
 
-  console.log(currentWord, buffor);
+function checkWord() {
+  if (input.value === currentWord) {
+    startTime += difficultyTime;
+    startTime > 10 ? (startTime = 10) : startTime;
+    time.innerText = `${startTime}s`;
+    input.value = '';
+    countingScore();
+    clearInterval(timer);
+    setTime();
+    showWord();
+  }
 }
 
 showWord();
 setTime();
 
 input.addEventListener('input', checkWord);
+difficulty.addEventListener('change', () => {
+  if (difficulty.value === 'hard') {
+    difficultyTime = 2;
+  } else if (difficulty.value === 'medium') {
+    difficultyTime = 3;
+  } else {
+    difficultyTime = 5;
+  }
+
+  console.log(difficulty.value);
+});
