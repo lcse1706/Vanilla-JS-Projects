@@ -22,9 +22,10 @@ async function renderWord() {
 
 async function newGame() {
   loadingDiv.style.display = 'block';
+  console.log('Creating word...');
   await renderWord();
   loadingDiv.style.display = 'none';
-  console.log(selectedWord);
+  console.log('Word Created: ' + selectedWord);
   displayWord();
 }
 
