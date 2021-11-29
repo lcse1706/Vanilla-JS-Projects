@@ -103,15 +103,6 @@ function checkWord() {
 
 function realod() {
   window.location.reload();
-  // startTime = 10;
-  // score = 0;
-  // currentWord = '';
-  // time.innerText = `${startTime}s`;
-  // scoreDisplay.innerText = score;
-  // gameContainer.style.display = 'flex';
-  // endgameContainer.style.display = 'none';
-  // showWord();
-  // setTime();
 }
 
 showWord();

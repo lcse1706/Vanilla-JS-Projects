@@ -25,7 +25,7 @@ async function newGame() {
   console.log('Creating word...');
   await renderWord();
   loadingDiv.style.display = 'none';
-  console.log('Word Created: ' + selectedWord);
+  console.log('Word Created:' + selectedWord);
   displayWord();
 }
 
