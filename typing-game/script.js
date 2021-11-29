@@ -38,6 +38,25 @@ let currentWord = '';
 let difficultyTime = 5;
 let timer;
 
+input.focus();
+
+function restoreSettings() {
+  difficulty.value = localStorage.getItem('difficulty');
+  setDifficulty();
+}
+
+function setDifficulty() {
+  if (difficulty.value === 'hard') {
+    difficultyTime = 2;
+  } else if (difficulty.value === 'medium') {
+    difficultyTime = 3;
+  } else {
+    difficultyTime = 5;
+  }
+
+  localStorage.setItem('difficulty', difficulty.value);
+}
+
 function drawIndex() {
   return Math.floor(Math.random() * words.length);
 }
@@ -83,31 +102,24 @@ function checkWord() {
 }
 
 function realod() {
-  //   window.location.reload();
-  startTime = 10;
-  score = 0;
-  currentWord = '';
-  time.innerText = `${startTime}s`;
-  scoreDisplay.innerText = score;
-  gameContainer.style.display = 'flex';
-  endgameContainer.style.display = 'none';
-  showWord();
-  setTime();
+  window.location.reload();
+  // startTime = 10;
+  // score = 0;
+  // currentWord = '';
+  // time.innerText = `${startTime}s`;
+  // scoreDisplay.innerText = score;
+  // gameContainer.style.display = 'flex';
+  // endgameContainer.style.display = 'none';
+  // showWord();
+  // setTime();
 }
 
 showWord();
 setTime();
+restoreSettings();
 
 input.addEventListener('input', checkWord);
-difficulty.addEventListener('change', () => {
-  if (difficulty.value === 'hard') {
-    difficultyTime = 2;
-  } else if (difficulty.value === 'medium') {
-    difficultyTime = 3;
-  } else {
-    difficultyTime = 5;
-  }
-});
+difficulty.addEventListener('change', setDifficulty);
 reload.addEventListener('click', realod);
 hide.addEventListener('click', () => {
   menu.classList.toggle('hide');
