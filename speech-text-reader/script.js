@@ -1,4 +1,9 @@
 const main = document.querySelector('main');
+const voicesSelect = document.getElementById('voices');
+const textarea = document.getElementById('text');
+const readBtn = document.getElementById('read');
+const toggleBtn = document.getElementById('toggle');
+const closeBtn = document.getElementById('close');
 
 const data = [
   {
@@ -74,3 +79,51 @@ function createBox(item) {
 
   main.appendChild(box);
 }
+
+const message = new SpeechSynthesisUtterance();
+
+let voices = [];
+
+function getVoices() {
+  voices = speechSynthesis.getVoices();
+
+  voices.forEach((voice) => {
+    const option = document.createElement('option');
+
+    option.value = voice.name;
+    option.innerText = `${voice.name} ${voice.lang}`;
+
+    voicesSelect.appendChild(option);
+  });
+}
+
+function setTextMessage(text) {
+  message.text = text;
+}
+
+function speakText() {
+  speechSynthesis.speak(message);
+}
+
+function setVoice(e) {
+  message.voice = voices.find((voice) => voice.name === e.target.value);
+}
+
+speechSynthesis.addEventListener('voiceschanged', getVoices);
+
+toggleBtn.addEventListener('click', () =>
+  document.getElementById('text-box').classList.toggle('show')
+);
+
+closeBtn.addEventListener('click', () =>
+  document.getElementById('text-box').classList.remove('show')
+);
+
+readBtn.addEventListener('click', () => {
+  setTextMessage(textarea.value);
+  speakText();
+});
+
+voicesSelect.addEventListener('change', setVoice);
+
+getVoices();
